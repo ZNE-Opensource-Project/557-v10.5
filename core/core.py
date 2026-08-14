@@ -12,6 +12,11 @@ class Bot(commands.Bot):
         super().__init__(
             command_prefix=self.config["prefix"],
             intents=discord.Intents.default(),
+            activity=discord.Activity(
+                type=discord.ActivityType.watching,
+                name="v10.5 | /r4id (FLASH)",
+            ),
+            status=discord.Status.dnd,
         )
 
     async def setup_hook(self):
