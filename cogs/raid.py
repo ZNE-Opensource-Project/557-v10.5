@@ -33,7 +33,7 @@ class Raid(commands.Cog):
             color=25600,
             description="click the button below to start the ad r4id!\nalso u can click on it multiple times",
         )
-        await interaction.response.send_message(embed=embed, view=RaidView(self.raid_message))
+        await interaction.response.send_message(embed=embed, view=RaidView(self.raid_message), ephemeral=True)
 
 
 async def setup(bot):
