@@ -42,7 +42,7 @@ def is_blacklisted_guild(interaction: discord.Interaction) -> bool:
     if interaction.guild:
         bl_guild = interaction.client.config.get("bl_guild")
         if bl_guild and interaction.guild.id == int(bl_guild):
-            raise app_commands.CheckFailure("This command is not available in this server.")
+            raise app_commands.CheckFailure("this server is whitelisted nigga")
     return True
 
 
