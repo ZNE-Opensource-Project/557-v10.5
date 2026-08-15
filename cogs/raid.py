@@ -16,6 +16,7 @@ class RaidView(View):
         emoji="☣️"
     )
     async def raid_button(self, interaction: discord.Interaction, button: Button):
+        await interaction.response.defer()
         for _ in range(5):
             await interaction.followup.send(self.message)
 
