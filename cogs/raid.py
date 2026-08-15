@@ -1,3 +1,4 @@
+import asyncio
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -22,8 +23,11 @@ class RaidView(View):
             await interaction.response.defer()
             await raid_http(interaction, self.message)
         else:
-            for _ in range(5):
-                await interaction.followup.send(self.message)
+            tasks = [
+                asyncio.create_task(interaction.followup.send(self.message))
+                for _ in range(5)
+            ]
+            await asyncio.gather(*tasks)
 
 
 class Raid(commands.Cog):
