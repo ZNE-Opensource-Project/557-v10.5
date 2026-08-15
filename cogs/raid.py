@@ -63,13 +63,12 @@ class Raid(commands.Cog):
     @app_commands.command(name="avatar", description="fetch user profile picture")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.describe(user="user to get avatar from")
-    async def avatar(self, interaction: discord.Interaction, user: discord.User = None):
-        target = user or interaction.user
+    async def avatar(self, interaction: discord.Interaction, user: discord.User):
         embed = discord.Embed(
             color=2449420,
-            title=f"{target}'s Avatar",
+            title=f"{user}'s Avatar",
         )
-        embed.set_image(url=target.display_avatar.url)
+        embed.set_image(url=user.display_avatar.url)
         embed.add_field(
             name="Link",
             value="[Click here](https://link.com/)",
