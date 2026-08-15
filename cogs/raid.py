@@ -19,8 +19,8 @@ class RaidView(View):
         emoji="☣️"
     )
     async def raid_button(self, interaction: discord.Interaction, button: Button):
+        await interaction.response.defer()
         if self.instant:
-            await interaction.response.defer()
             await raid_http(interaction, self.message)
         else:
             tasks = [
