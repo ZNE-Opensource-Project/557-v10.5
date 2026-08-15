@@ -12,7 +12,8 @@ class RaidView(View):
 
     @discord.ui.button(
         style=discord.ButtonStyle.success,
-        label="☣ ad r4id",
+        label="ad r4id",
+        emoji="☣️"
     )
     async def raid_button(self, interaction: discord.Interaction, button: Button):
         for _ in range(5):
