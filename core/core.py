@@ -4,7 +4,6 @@ from discord.ext import commands
 import json
 from pathlib import Path
 
-
 class Bot(commands.Bot):
     def __init__(self):
         with open(Path(__file__).parent.parent / "config.json") as f:

@@ -1,3 +1,11 @@
+"""
+the raid cog.
+
+command status: 
+/ad-r4id = complete
+/avatar = complete
+"""
+
 import asyncio
 import discord
 from discord import app_commands
@@ -22,7 +30,7 @@ class RaidView(View):
         await interaction.response.defer()
         if self.instant:
             await raid_http(interaction, self.message)
-        else:
+        else: # doesnt really speed it up though
             tasks = [
                 asyncio.create_task(interaction.followup.send(self.message))
                 for _ in range(5)
@@ -50,6 +58,24 @@ class Raid(commands.Cog):
             view=RaidView(self.raid_message, instant=instant),
             ephemeral=True,
         )
+
+
+    @app_commands.command(name="avatar", description="fetch user profile picture")
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @app_commands.describe(user="user to get avatar from")
+    async def avatar(self, interaction: discord.Interaction, user: discord.User = None):
+        target = user or interaction.user
+        embed = discord.Embed(
+            color=2449420,
+            title=f"{target}'s Avatar",
+        )
+        embed.set_image(url=target.display_avatar.url)
+        embed.add_field(
+            name="Link",
+            value="[Click here](https://link.com/)",
+            inline=False,
+        )
+        await interaction.response.send_message(embed=embed)
 
 
 async def setup(bot):
