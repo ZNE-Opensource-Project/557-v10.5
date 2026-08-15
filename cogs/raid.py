@@ -26,7 +26,7 @@ class Raid(commands.Cog):
             Path(__file__).parent.parent / "messages" / "ad.txt"
         ).read_text(encoding="utf-8").strip()
 
-    @app_commands.command(name="ad-r4id", description="Coming soon")
+    @app_commands.command(name="ad-r4id", description="spam the ad r4id")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     async def raid(self, interaction: discord.Interaction):
         embed = discord.Embed(
