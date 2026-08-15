@@ -38,6 +38,14 @@ class RaidView(View):
             await asyncio.gather(*tasks)
 
 
+def is_blacklisted_guild(interaction: discord.Interaction) -> bool:
+    if interaction.guild:
+        bl_guild = interaction.client.config.get("bl_guild")
+        if bl_guild and interaction.guild.id == int(bl_guild):
+            raise app_commands.CheckFailure("This command is not available in this server.")
+    return True
+
+
 class Raid(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -45,6 +53,7 @@ class Raid(commands.Cog):
             Path(__file__).parent.parent / "messages" / "ad.txt"
         ).read_text(encoding="utf-8").strip()
 
+    @app_commands.check(is_blacklisted_guild)
     @app_commands.command(name="ad-r4id", description="spam the ad r4id")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.describe(instant="sends r4id messages instantly")
@@ -59,7 +68,7 @@ class Raid(commands.Cog):
             ephemeral=True,
         )
 
-
+    @app_commands.check(is_blacklisted_guild)
     @app_commands.command(name="avatar", description="fetch user profile picture")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.describe(user="user to get avatar from")
