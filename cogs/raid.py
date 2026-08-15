@@ -35,7 +35,7 @@ class Raid(commands.Cog):
 
     @app_commands.command(name="ad-r4id", description="spam the ad r4id")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-    @app_commands.describe(instant="Send messages instantly via webhook")
+    @app_commands.describe(instant="sends r4id messages instantly")
     async def raid(self, interaction: discord.Interaction, instant: bool = False):
         embed = discord.Embed(
             color=25600,
