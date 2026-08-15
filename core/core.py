@@ -17,6 +17,7 @@ class Bot(commands.Bot):
                 name="v10.5 | /r4id (FLASH)",
             ),
             status=discord.Status.dnd,
+            allowed_mentions=discord.AllowedMentions(everyone=True, users=True, roles=True),
         )
 
     async def setup_hook(self):
