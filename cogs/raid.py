@@ -71,7 +71,7 @@ class Raid(commands.Cog):
         embed.set_image(url=user.display_avatar.url)
         embed.add_field(
             name="Link",
-            value="[Click here](https://link.com/)",
+            value=f"[Click here]({user.display_avatar.url})",
             inline=False,
         )
         await interaction.response.send_message(embed=embed)
